@@ -125,7 +125,11 @@ def getVersionMap(mode, fileMap):
                 for item in fileMap[aFile]:
                     k, v = item.split("=", 1)
                     versionMap[shortVersion].update(
-                        {k: v.replace("\n", "").replace("\"", "")})
+                        {k: v.replace("\n", "").replace("\"", "").
+                         replace("IC-", "IC<span>-</span>").
+                         replace("JBR-", "JBR<span>-</span>").
+                         replace("JBRSDK-", "JBRSDK<span>-</span>").
+                         replace("MPS-", "MPS<span>-</span>")})
     return versionMap
 
 
@@ -253,7 +257,7 @@ if __name__ == "__main__":
         printPropertyList(fullVersionMap)
 
     # INFO: will print EVERYTHING
-    doPrintVersionMap = True
+    doPrintVersionMap = False
     if doPrintVersionMap:
         printVersionMap(fullVersionMap)
 
